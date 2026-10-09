@@ -1,5 +1,7 @@
 # Back to the Code Themes
 
+[English documentation](README.en.md) · **中文**
+
 一套统一的终端与 AI coding CLI 主题，基于 [divyanshu013/back-to-the-code](https://github.com/divyanshu013/back-to-the-code) 做了非官方适配：
 
 本项目与原作者及原项目没有隶属或官方背书关系。原始配色和相关适配内容按原仓库的 MIT License 使用；发布或再分发时，请保留原作者版权声明和授权文本。
@@ -329,7 +331,9 @@ back-to-the-code/
 │   ├── back-to-the-code-light.json
 │   └── README.md
 ├── install.sh
-└── README.md
+├── LICENSE
+├── README.md
+└── README.en.md
 ~~~
 
 ## 设计说明
