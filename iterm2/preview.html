@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Back to the Code — iTerm2</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#eceef3;color:#20232b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:40px 24px 32px}
+    main{max-width:1480px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:28px}
+    .eyebrow{font-size:11px;letter-spacing:.16em;font-weight:650;color:#666975;text-transform:uppercase;margin-bottom:10px}h1{font-size:clamp(27px,3vw,40px);letter-spacing:-.045em;line-height:1.1;margin:0 0 12px;font-weight:720}
+    .intro{color:#666975;margin:0;font-size:14px;line-height:1.7}.controls{display:flex;gap:4px;padding:5px;background:#dfe2e9;border-radius:12px;flex-shrink:0}
+    button{font:inherit;font-size:13px;padding:9px 14px;cursor:pointer;border:0;background:transparent;border-radius:8px;color:#666975}button[aria-pressed="true"]{background:#fafafc;color:#20232b;box-shadow:0 2px 6px #1c1d2110}
+    .themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.theme-card{border-radius:16px;overflow:hidden;background:var(--bg);color:var(--fg);box-shadow:0 12px 36px #1c1d2115;border:1px solid #1c1d2112}
+    .titlebar{display:grid;grid-template-columns:80px 1fr 80px;gap:8px;align-items:center;text-align:center;background:var(--panel);height:48px;font-size:12px;color:var(--fg);padding:0 18px}
+    .traffic{display:flex;gap:7px}.traffic i{width:10px;height:10px;background:#ff6058;border-radius:50%}.traffic i:nth-child(2){background:#ffbd2d}.traffic i:nth-child(3){background:#28c840}
+    .terminal{padding:28px 26px;min-height:363px;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:clamp(12px,1.1vw,14px);line-height:1.85;overflow:auto}.terminal p{margin:0;white-space:nowrap}.terminal .gap{margin-top:16px}
+    .muted{color:var(--ansi-8)}.green{color:var(--ansi-2)}.blue{color:var(--ansi-4)}.cyan{color:var(--ansi-6)}.yellow{color:var(--ansi-3)}.orange{color:var(--ansi-1)}.pink{color:var(--ansi-5)}
+    .selected{color:var(--selected);background:var(--panel);padding:2px 4px;border-radius:3px}.cursor{display:inline-block;background:var(--cursor);color:var(--cursor-text);width:8px;height:17px;vertical-align:middle}
+    .palette{border-top:1px solid var(--panel);padding:18px 26px 22px}.palette-label{font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--fg);opacity:.75;margin-bottom:18px}.swatches{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:18px 8px}.swatch{display:flex;flex-direction:column;gap:5px;font-size:9px;min-width:0}.sample{height:27px;border-radius:5px;box-shadow:inset 0 0 0 1px #80808020}.swatch code{font-size:9px;opacity:.7}.swatch>span:not(.sample){font-size:9px;white-space:nowrap}
+    .card-footer{background:var(--panel);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:15px 26px;font-size:11px}.card-footer a{color:var(--fg);text-underline-offset:4px}code{font-family:"SFMono-Regular",Consolas,monospace}
+    footer{color:#666975;margin:24px 2px 0;font-size:12px;line-height:1.8;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}footer a{color:inherit;text-underline-offset:3px}
+    body[data-mode="dark"] [data-theme="light"],body[data-mode="light"] [data-theme="dark"]{display:none}body:not([data-mode="compare"]) .themes{grid-template-columns:minmax(0,960px);justify-content:center}
+    @media(max-width:1050px){.themes{grid-template-columns:1fr}.terminal{font-size:14px}header{align-items:flex-start;flex-direction:column}.swatch>span:not(.sample),.swatch code{font-size:10px}}
+    @media(max-width:560px){body{padding:28px 14px}.terminal{padding:20px 16px;font-size:12px}.palette{padding:18px 16px}.swatches{grid-template-columns:repeat(4,minmax(0,1fr))}.card-footer{padding:14px 16px}.titlebar{grid-template-columns:48px 1fr 48px;padding:0 14px}}
+  </style>
+</head>
+<body data-mode="compare">
+  <main>
+    <header>
+      <div><div class="eyebrow">iTerm2 color presets</div><h1>Back to the Code</h1><p class="intro">深灰与冷白，搭配粉色、金黄和青绿。适合白天与夜间的两份配色。</p></div>
+      <nav class="controls" aria-label="预览模式"><button type="button" data-mode="compare" aria-pressed="true">并排对照</button><button type="button" data-mode="dark" aria-pressed="false">Dark</button><button type="button" data-mode="light" aria-pressed="false">Light</button></nav>
+    </header>
+    <div class="themes">
+      <article class="theme-card" data-theme="dark" style="--bg:#1c1d21;--fg:#cbcdd2;--strong:#fafafc;--panel:#2f3137;--selected:#fafafc;--cursor:#4fb4d8;--cursor-text:#1c1d21;--ansi-0:#121213;--ansi-1:#ff8a54;--ansi-2:#78bd65;--ansi-3:#fbc93f;--ansi-4:#4fb4d8;--ansi-5:#fa3368;--ansi-6:#5dd8b7;--ansi-7:#cbcdd2;--ansi-8:#686b78;--ansi-9:#ffad86;--ansi-10:#5dd8b7;--ansi-11:#ffe08a;--ansi-12:#79d9f1;--ansi-13:#ff7b9e;--ansi-14:#a1efda;--ansi-15:#fafafc">
+        <div class="titlebar"><span class="traffic"><i></i><i></i><i></i></span><span>Back to the Code · Dark</span><span></span></div>
+        <div class="terminal" aria-label="Dark 终端配色示例">
+          <p><span class="pink">liuhaojie</span><span class="muted"> @ workstation</span> <span class="blue">~/codefield</span></p>
+          <p><span class="green">❯</span> git status <span class="muted">--short --branch</span></p>
+          <p><span class="cyan">##</span> <span class="green">main</span><span class="muted">...origin/main</span></p>
+          <p><span class="yellow"> M</span> train.py</p>
+          <p><span class="cyan">??</span> outputs/</p>
+          <p class="gap"><span class="green">❯</span> python train.py <span class="orange">--epochs 88</span></p>
+          <p><span class="muted">[13:38:00]</span> <span class="cyan">INFO</span> <span class="yellow">Epoch</span> <span class="orange">88/88</span></p>
+          <p><span class="green">✓ Training completed</span> <span class="muted">in 5.2s</span></p>
+          <p><span class="muted">Saved to</span> <span class="selected">outputs/checkpoint.pt</span></p>
+          <p class="gap"><span class="pink">❯</span> <span class="cursor"> </span></p>
+        </div>
+        <div class="palette"><div class="palette-label">ANSI · 16 色</div><div class="swatches"><div class="swatch" title="ANSI 0: #121213"><span class="sample" style="background:#121213"></span><span>Black</span><code>#121213</code></div><div class="swatch" title="ANSI 1: #FF8A54"><span class="sample" style="background:#ff8a54"></span><span>Red</span><code>#FF8A54</code></div><div class="swatch" title="ANSI 2: #78BD65"><span class="sample" style="background:#78bd65"></span><span>Green</span><code>#78BD65</code></div><div class="swatch" title="ANSI 3: #FBC93F"><span class="sample" style="background:#fbc93f"></span><span>Yellow</span><code>#FBC93F</code></div><div class="swatch" title="ANSI 4: #4FB4D8"><span class="sample" style="background:#4fb4d8"></span><span>Blue</span><code>#4FB4D8</code></div><div class="swatch" title="ANSI 5: #FA3368"><span class="sample" style="background:#fa3368"></span><span>Magenta</span><code>#FA3368</code></div><div class="swatch" title="ANSI 6: #5DD8B7"><span class="sample" style="background:#5dd8b7"></span><span>Cyan</span><code>#5DD8B7</code></div><div class="swatch" title="ANSI 7: #CBCDD2"><span class="sample" style="background:#cbcdd2"></span><span>White</span><code>#CBCDD2</code></div><div class="swatch" title="ANSI 8: #686B78"><span class="sample" style="background:#686b78"></span><span>Bright Black</span><code>#686B78</code></div><div class="swatch" title="ANSI 9: #FFAD86"><span class="sample" style="background:#ffad86"></span><span>Bright Red</span><code>#FFAD86</code></div><div class="swatch" title="ANSI 10: #5DD8B7"><span class="sample" style="background:#5dd8b7"></span><span>Bright Green</span><code>#5DD8B7</code></div><div class="swatch" title="ANSI 11: #FFE08A"><span class="sample" style="background:#ffe08a"></span><span>Bright Yellow</span><code>#FFE08A</code></div><div class="swatch" title="ANSI 12: #79D9F1"><span class="sample" style="background:#79d9f1"></span><span>Bright Blue</span><code>#79D9F1</code></div><div class="swatch" title="ANSI 13: #FF7B9E"><span class="sample" style="background:#ff7b9e"></span><span>Bright Magenta</span><code>#FF7B9E</code></div><div class="swatch" title="ANSI 14: #A1EFDA"><span class="sample" style="background:#a1efda"></span><span>Bright Cyan</span><code>#A1EFDA</code></div><div class="swatch" title="ANSI 15: #FAFAFC"><span class="sample" style="background:#fafafc"></span><span>Bright White</span><code>#FAFAFC</code></div></div></div>
+        <div class="card-footer"><span>背景 <code>#1C1D21</code></span><span>文字 <code>#CBCDD2</code></span><a download href="Back to the Code Dark.itermcolors">下载 Dark preset ↗</a></div>
+      </article>
+      <article class="theme-card" data-theme="light" style="--bg:#fafafc;--fg:#2f3137;--strong:#1c1d21;--panel:#dbe5ef;--selected:#1c1d21;--cursor:#156f91;--cursor-text:#fafafc;--ansi-0:#2f3137;--ansi-1:#a4441c;--ansi-2:#287a35;--ansi-3:#8a6200;--ansi-4:#156f91;--ansi-5:#c2184b;--ansi-6:#177c66;--ansi-7:#666975;--ansi-8:#5a5d69;--ansi-9:#ae3a10;--ansi-10:#177c66;--ansi-11:#936400;--ansi-12:#005f85;--ansi-13:#962b6e;--ansi-14:#08758f;--ansi-15:#1c1d21">
+        <div class="titlebar"><span class="traffic"><i></i><i></i><i></i></span><span>Back to the Code · Light</span><span></span></div>
+        <div class="terminal" aria-label="Light 终端配色示例">
+          <p><span class="pink">liuhaojie</span><span class="muted"> @ workstation</span> <span class="blue">~/codefield</span></p>
+          <p><span class="green">❯</span> git status <span class="muted">--short --branch</span></p>
+          <p><span class="cyan">##</span> <span class="green">main</span><span class="muted">...origin/main</span></p>
+          <p><span class="yellow"> M</span> train.py</p>
+          <p><span class="cyan">??</span> outputs/</p>
+          <p class="gap"><span class="green">❯</span> python train.py <span class="orange">--epochs 88</span></p>
+          <p><span class="muted">[13:38:00]</span> <span class="cyan">INFO</span> <span class="yellow">Epoch</span> <span class="orange">88/88</span></p>
+          <p><span class="green">✓ Training completed</span> <span class="muted">in 5.2s</span></p>
+          <p><span class="muted">Saved to</span> <span class="selected">outputs/checkpoint.pt</span></p>
+          <p class="gap"><span class="pink">❯</span> <span class="cursor"> </span></p>
+        </div>
+        <div class="palette"><div class="palette-label">ANSI · 16 色</div><div class="swatches"><div class="swatch" title="ANSI 0: #2F3137"><span class="sample" style="background:#2f3137"></span><span>Black</span><code>#2F3137</code></div><div class="swatch" title="ANSI 1: #A4441C"><span class="sample" style="background:#a4441c"></span><span>Red</span><code>#A4441C</code></div><div class="swatch" title="ANSI 2: #287A35"><span class="sample" style="background:#287a35"></span><span>Green</span><code>#287A35</code></div><div class="swatch" title="ANSI 3: #8A6200"><span class="sample" style="background:#8a6200"></span><span>Yellow</span><code>#8A6200</code></div><div class="swatch" title="ANSI 4: #156F91"><span class="sample" style="background:#156f91"></span><span>Blue</span><code>#156F91</code></div><div class="swatch" title="ANSI 5: #C2184B"><span class="sample" style="background:#c2184b"></span><span>Magenta</span><code>#C2184B</code></div><div class="swatch" title="ANSI 6: #177C66"><span class="sample" style="background:#177c66"></span><span>Cyan</span><code>#177C66</code></div><div class="swatch" title="ANSI 7: #666975"><span class="sample" style="background:#666975"></span><span>White</span><code>#666975</code></div><div class="swatch" title="ANSI 8: #5A5D69"><span class="sample" style="background:#5a5d69"></span><span>Bright Black</span><code>#5A5D69</code></div><div class="swatch" title="ANSI 9: #AE3A10"><span class="sample" style="background:#ae3a10"></span><span>Bright Red</span><code>#AE3A10</code></div><div class="swatch" title="ANSI 10: #177C66"><span class="sample" style="background:#177c66"></span><span>Bright Green</span><code>#177C66</code></div><div class="swatch" title="ANSI 11: #936400"><span class="sample" style="background:#936400"></span><span>Bright Yellow</span><code>#936400</code></div><div class="swatch" title="ANSI 12: #005F85"><span class="sample" style="background:#005f85"></span><span>Bright Blue</span><code>#005F85</code></div><div class="swatch" title="ANSI 13: #962B6E"><span class="sample" style="background:#962b6e"></span><span>Bright Magenta</span><code>#962B6E</code></div><div class="swatch" title="ANSI 14: #08758F"><span class="sample" style="background:#08758f"></span><span>Bright Cyan</span><code>#08758F</code></div><div class="swatch" title="ANSI 15: #1C1D21"><span class="sample" style="background:#1c1d21"></span><span>Bright White</span><code>#1C1D21</code></div></div></div>
+        <div class="card-footer"><span>背景 <code>#FAFAFC</code></span><span>文字 <code>#2F3137</code></span><a download href="Back to the Code Light.itermcolors">下载 Light preset ↗</a></div>
+      </article></div>
+    <footer><span>Settings → Profiles → Colors → Color Presets… → Import…</span><span>配色示例 · 基于 <a href="https://github.com/divyanshu013/back-to-the-code">divyanshu013 / Back to the Code</a></span></footer>
+  </main>
+  <script>
+    document.querySelectorAll('button[data-mode]').forEach(button=>button.addEventListener('click',()=>{
+      document.body.dataset.mode=button.dataset.mode;
+      document.querySelectorAll('button[data-mode]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+    }));
+  </script>
+</body>
+</html>

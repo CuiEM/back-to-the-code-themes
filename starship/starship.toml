@@ -1,0 +1,180 @@
+# Back to the Code — Starship adaptation for liuhaojie.
+# Palette: https://github.com/divyanshu013/back-to-the-code
+# Source commit: b7347e87147a33d21faaa8d1b939583f785aa7c9
+# Uses the effective token colors from the end of the original theme file.
+# Powerline separators and icons use the same Nerd Font as gruvbox-rainbow.
+# The layout is a small time-machine dashboard: sharp separators,
+# a fixed 88 MPH marker, and a right-side instrument readout.
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+palette = 'back_to_the_code'
+command_timeout = 1000
+continuation_prompt = '╰─› '
+
+format = """
+ [ ⚡88 MPH ](bold fg:background bg:yellow)\
+[](fg:yellow bg:pink)\
+$os$username$hostname\
+[](fg:pink bg:cyan)\
+$directory\
+[](fg:cyan bg:mint)\
+$git_branch$git_status\
+[](fg:mint bg:panel)\
+$python$nodejs$rust$golang$c$conda$docker_context\
+[](fg:panel bg:background)\
+$line_break\
+ $character"""
+
+right_format = """
+[╾](fg:track)\
+$time\
+[│](fg:track)\
+$cmd_duration\
+$jobs\
+$status"""
+
+[palettes.back_to_the_code]
+background = '#1c1d21'
+panel = '#2f3137'
+track = '#686b78'
+foreground = '#cbcdd2'
+bright = '#fafafc'
+muted = '#686b78'
+pink = '#fa3368'
+yellow = '#fbc93f'
+mint = '#5dd8b7'
+cyan = '#79d9f1'
+blue = '#4fb4d8'
+orange = '#ff8a54'
+
+[os]
+disabled = false
+style = 'fg:background bg:pink'
+format = '[ $symbol ]($style)'
+
+[os.symbols]
+Ubuntu = ''
+Debian = ''
+Linux = ''
+Arch = ''
+Fedora = ''
+Alpine = ''
+Macos = ''
+Windows = '󰍲'
+
+[username]
+show_always = true
+style_user = 'bold fg:background bg:pink'
+style_root = 'bold fg:yellow bg:pink'
+format = '[ $user]($style)'
+
+[hostname]
+ssh_only = true
+style = 'bold fg:background bg:pink'
+format = '[@$hostname ]($style)'
+
+[directory]
+style = 'bold fg:background bg:cyan'
+format = '[ $path$read_only ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = false
+home_symbol = '~'
+read_only = ' '
+
+[git_branch]
+symbol = ' '
+style = 'bold fg:background bg:mint'
+format = '[ $symbol$branch ]($style)'
+truncation_length = 28
+truncation_symbol = '…'
+
+[git_status]
+style = 'fg:background bg:mint'
+format = '[ $all_status$ahead_behind]($style)'
+conflicted = '=${count} '
+ahead = '⇡${count} '
+behind = '⇣${count} '
+diverged = '⇕⇡${ahead_count}⇣${behind_count} '
+untracked = '?${count} '
+stashed = '≡${count} '
+modified = '!${count} '
+staged = '+${count} '
+renamed = '»${count} '
+deleted = '✘${count} '
+
+[python]
+symbol = ' '
+style = 'fg:cyan bg:panel'
+format = '[ $symbol$version( \($virtualenv\)) ]($style)'
+python_binary = ['python', 'python3']
+
+[nodejs]
+symbol = ' '
+style = 'fg:mint bg:panel'
+format = '[ $symbol$version ]($style)'
+
+[rust]
+symbol = ' '
+style = 'fg:orange bg:panel'
+format = '[ $symbol$version ]($style)'
+
+[golang]
+symbol = ' '
+style = 'fg:cyan bg:panel'
+format = '[ $symbol$version ]($style)'
+
+[c]
+symbol = ' '
+style = 'fg:cyan bg:panel'
+format = '[ $symbol$version ]($style)'
+
+[conda]
+symbol = 'conda '
+style = 'fg:mint bg:panel'
+format = '[ $symbol$environment ]($style)'
+ignore_base = true
+truncation_length = 0
+
+[docker_context]
+symbol = ' '
+style = 'fg:blue bg:panel'
+format = '[ $symbol$context ]($style)'
+only_with_files = true
+
+[time]
+disabled = false
+time_format = '%H:%M:%S'
+utc_time_offset = '+8'
+style = 'fg:cyan bg:background'
+format = '[ ⏱ $time ]($style)'
+
+[cmd_duration]
+min_time = 2000
+style = 'fg:orange'
+format = '[ ◷ $duration ]($style)'
+
+[jobs]
+symbol = '◈'
+style = 'fg:yellow'
+format = '[ $symbol$number ]($style)'
+number_threshold = 1
+symbol_threshold = 1
+
+[status]
+disabled = false
+style = 'bold fg:pink'
+symbol = '✖ '
+format = '[ $symbol$status ]($style)'
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = '[╰─❯](bold fg:mint)'
+error_symbol = '[╰─✖](bold fg:pink)'
+vimcmd_symbol = '[╰─❮](bold fg:cyan)'
+vimcmd_replace_one_symbol = '[╰─❮](bold fg:orange)'
+vimcmd_replace_symbol = '[╰─❮](bold fg:orange)'
+vimcmd_visual_symbol = '[╰─❮](bold fg:yellow)'
