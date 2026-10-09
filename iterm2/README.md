@@ -1,6 +1,6 @@
 # Back to the Code · iTerm2
 
-为 liuhaojie 制作的深色与浅色配色 preset。
+为 cuiem 制作的深色与浅色配色 preset。
 
 - `Back to the Code Dark.itermcolors`：沿用原主题的深灰背景和主要强调色，部分 ANSI bright 色适当提亮。
 - `Back to the Code Light.itermcolors`：以冷白为背景，加深橙、绿、金、蓝、粉、青色，保持同一风格。
